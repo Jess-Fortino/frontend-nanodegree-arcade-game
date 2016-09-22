@@ -70,14 +70,12 @@ Player.prototype.update = function(){
 
 //Begin Scoreboard
 var score = 0;
-
-function drawScore() {
+var drawScore = function() {
     ctx.font = "16px Arial";
     ctx.fillStyle = "#000000";
     ctx.fillText("Score: "+score, 50, 100);
 }
-//drawScore();
-
+drawScore();
 
 //allows keyboard key movements
 Player.prototype.handleInput = function(key){
