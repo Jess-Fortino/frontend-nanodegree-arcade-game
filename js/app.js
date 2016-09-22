@@ -62,7 +62,7 @@ Player.prototype.update = function(){
     //alert("You won!");
     console.log(score++);
     if(score === 5){
-      alert("You Win with " +score + " points!");
+      alert("You Win with " + score + " points!");
       document.location.reload();
     }
   }
@@ -75,7 +75,7 @@ var drawScore = function() {
     ctx.fillStyle = "#000000";
     ctx.fillText("Score: "+score, 50, 100);
 }
-drawScore();
+
 
 //allows keyboard key movements
 Player.prototype.handleInput = function(key){
