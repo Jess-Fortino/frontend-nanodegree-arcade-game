@@ -188,6 +188,8 @@ var Engine = (function(global) {
     global.ctx = ctx;
 })(this);
 //adding the scoreboard to the canvas
-ctx.font = "30px Arial";
-ctx.fillStyle = "#FFF";
-ctx.fillText("Score: " + score, 30, 25);
+//var drawScore = function(){
+  ctx.font = "30px Arial";
+  ctx.fillStyle = "#FFF";
+  ctx.fillText("Score: " + this.score, 175, 25);
+// };

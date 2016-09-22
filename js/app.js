@@ -59,7 +59,6 @@ Player.prototype.update = function(){
     this.x = 200;
     this.y = 410;
     console.log("I hit the water!");
-    //alert("You won!");
     console.log(score++);
     if(score === 5){
       alert("You Win with " + score + " points!");
@@ -68,13 +67,7 @@ Player.prototype.update = function(){
   }
 }
 
-//Begin Scoreboard
 var score = 0;
-var drawScore = function() {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#000000";
-    ctx.fillText("Score: "+score, 50, 100);
-}
 
 
 //allows keyboard key movements
