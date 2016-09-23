@@ -32,8 +32,8 @@ Enemy.prototype.checkCollisions = function(){
        new Player();
        player.x = 200;
        player.y = 410;
-       alert("You lost! You had " + score + " points");
-       document.location.reload();
+       //alert("You lost! You had " + score + " points");
+       //document.location.reload();
      }
 }
 // Draw the enemy on the screen, required method for game
@@ -48,6 +48,8 @@ var Player = function(x,y){
   this.sprite = 'images/char-cat-girl.png';
   this.x = x;
   this.y = y;
+
+
 };
 
 
@@ -60,6 +62,34 @@ Player.prototype.update = function(){
     this.y = 410;
     console.log("I hit the water!");
     console.log(score++);
+
+    //scoreboard
+    ctx.font = "30px Arial";
+    ctx.fillStyle = "#FFF";
+    ctx.fillText("Score: " + score, 198, 25);
+
+//a for loop-- would be score: + i not a whole mess of if statements.
+
+    if(score === 2){
+      ctx.font = "30px Arial";
+      ctx.fillStyle = "#000";
+      ctx.fillText("Score: 1", 198, 25);
+      ctx.fillStyle = "#FFF";
+      ctx.fillText("Score: " + score, 198, 25);
+    }
+    if(score === 3){
+      ctx.font = "30px Arial";
+      ctx.fillStyle = "#000";
+      ctx.fillText("Score: 2", 198, 25);
+      ctx.fillStyle = "#FFF";
+      ctx.fillText("Score: " + score, 198, 25);
+    }
+    if(score === 4){
+      ctx.fillStyle = "#000";
+      ctx.fillText("Score: 3", 198, 25);
+      ctx.fillStyle= "#FFF";
+      ctx.fillText("Score: " + score, 198, 25);
+    }
     if(score === 5){
       alert("You Win with " + score + " points!");
       document.location.reload();
