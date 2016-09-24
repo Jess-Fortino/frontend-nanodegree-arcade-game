@@ -41,6 +41,65 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+var blueGem = function(x, y){ //gains 10 points
+  this.sprite = "images/GemBlue.png";
+  this.x = x;
+  this.y = y;
+}//need to use check collisions and render --  needs to be in engine.js
+
+blueGem.prototype.checkCollisions = function(){
+  if(this.x < player.x + 50 &&
+     this.x + 70 > player.x &&
+     this.y < player.y + 30 &&
+     this.y + 30 > player.y){
+       score += 10;
+       new blueGem();
+     }
+}
+blueGem.prototype.render = function(){
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+var heart = function(x, y){ //gives the player an extra life
+  this.sprite = "images/Heart.png";
+  this.x = x;
+  this.y = y;
+}// need to use checkCollisions and render -- needs to be in engine.js
+heart.prototype.checkCollisions = function(){
+  if(this.x < player.x + 50 &&
+     this.x + 70 > player.x &&
+     this.y < player.y + 30 &&
+     this.y + 30 > player.y){
+       lives++ //NEED TO ADD A LIFE THING!
+       //You need to create a life counter, starting with 3 lives -- when the counter gets to 0 then the next collision results in the end of the game.
+       new heart();
+     }
+}
+
+heart.prototype.render = function(){
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
+};
+
+var Star = function(x, y){ //gains 20 points
+  this.sprite = "images/Star.png";
+  this.x = x;
+  this.y = y;
+}//need to use checkCollisions and render-- needs to be in engine.js
+
+Star.prototype.checkCollisions = function(){
+  if(this.x < player.x + 50 &&
+     this.x + 70 > player.x &&
+     this.y < player.y + 30 &&
+     this.y + 30 > player.y){
+       score += 20;
+       new Star;
+     }
+}
+
+Star.prototype.render = function(){
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
+};
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -48,8 +107,6 @@ var Player = function(x,y){
   this.sprite = 'images/char-cat-girl.png';
   this.x = x;
   this.y = y;
-
-
 };
 
 
@@ -112,6 +169,11 @@ allEnemies[2] = new Enemy(0, 230);
 
 var player = new Player(200, 410);
 
+var bluegem = new blueGem(100, 140);
+
+var Heart = new heart(200, 140);
+
+var star = new Star(300, 140);
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
