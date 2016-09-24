@@ -60,43 +60,19 @@ Player.prototype.update = function(){
     new Player()
     this.x = 200;
     this.y = 410;
-    console.log("I hit the water!");
-    console.log(score++);
-
-    //scoreboard
-    ctx.font = "30px Arial";
-    ctx.fillStyle = "#FFF";
-    ctx.fillText("Score: " + score, 198, 25);
-
-//a for loop-- would be score: + i not a whole mess of if statements.
-
-    if(score === 2){
-      ctx.font = "30px Arial";
+    console.log("I hit the water!"); //lets me know when it hits
+    score += 5; //adds 5 points when the player hits the water
+//scoreboard scoring
+      ctx.clearRect(0, 0, 500, 500);
       ctx.fillStyle = "#000";
-      ctx.fillText("Score: 1", 198, 25);
-      ctx.fillStyle = "#FFF";
       ctx.fillText("Score: " + score, 198, 25);
-    }
-    if(score === 3){
-      ctx.font = "30px Arial";
-      ctx.fillStyle = "#000";
-      ctx.fillText("Score: 2", 198, 25);
-      ctx.fillStyle = "#FFF";
-      ctx.fillText("Score: " + score, 198, 25);
-    }
-    if(score === 4){
-      ctx.fillStyle = "#000";
-      ctx.fillText("Score: 3", 198, 25);
-      ctx.fillStyle= "#FFF";
-      ctx.fillText("Score: " + score, 198, 25);
-    }
-    if(score === 5){
+    if(score === 100){
       alert("You Win with " + score + " points!");
       document.location.reload();
     }
   }
-}
-
+};
+//starting the score at 0
 var score = 0;
 
 
@@ -118,6 +94,10 @@ Player.prototype.handleInput = function(key){
 //renders player onto canvas
 Player.prototype.render = function(){
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+//renders the score onto canvas
+  ctx.font = "30px Arial Narrow";
+  ctx.fillstyle = "#000";
+  ctx.fillText("Score: " + score, 198, 25);
 };
 
 

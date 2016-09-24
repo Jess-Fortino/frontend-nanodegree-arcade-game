@@ -1,13 +1,5 @@
 body {
     text-align: center;
-    background-color: black;
-}
-
-#scoreboard {
-  background-color: black;
-  color: white;
-  padding: -10px;
-  font-family: cursive;
-  font-size: 20px;
-  margin-bottom: -40px;
+    background-color: white;
+    color: white;
 }
