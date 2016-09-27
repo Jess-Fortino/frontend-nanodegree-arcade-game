@@ -9,7 +9,7 @@ var lives = 3;
 var Enemy = function(x, y) {
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
-    this.y =y;
+    this.y = y;
     this.speed = 80 + Math.random() * 400;
 };
 
@@ -21,32 +21,32 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.updatePosition(dt);
     this.checkCollisions();
-  };
-  //updates enemy position
-Enemy.prototype.updatePosition = function(dt){
-  this.x = this.x + this.speed * dt;
-    if(this.x > 606){
-      this.x = -20;
+};
+//updates enemy position
+Enemy.prototype.updatePosition = function(dt) {
+    this.x = this.x + this.speed * dt;
+    if (this.x > 606) {
+        this.x = -20;
     }
 }
 
 //checks if the player collides with a bug, if the player does collide with a bug, the game resets and the player loses their score.
-Enemy.prototype.checkCollisions = function(){
-  if(this.x < player.x &&
-     this.x + enemyWidth > player.x &&
-     this.y < player.y &&
-     this.y + enemyHeight > player.y){
-       new Player();
-       player.x = 200;
-       player.y = 410;
-       lives--;
-       ctx.clearRect(0, 0, 500, 500);
-//if you run out of lives the game is reloaded
-       if(lives === 0){
-         alert("You lost! You had " + score + " points");
-         document.location.reload();
-       }
-     }
+Enemy.prototype.checkCollisions = function() {
+    if (this.x < player.x &&
+        this.x + enemyWidth > player.x &&
+        this.y < player.y &&
+        this.y + enemyHeight > player.y) {
+        new Player();
+        player.x = 200;
+        player.y = 410;
+        lives--;
+        ctx.clearRect(0, 0, 500, 500);
+        //if you run out of lives the game is reloaded
+        if (lives === 0) {
+            alert("You lost! You had " + score + " points");
+            document.location.reload();
+        }
+    }
 };
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -56,58 +56,58 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function(x,y){
-  this.sprite = 'images/char-cat-girl.png';
-  this.x = x;
-  this.y = y;
+var Player = function(x, y) {
+    this.sprite = 'images/char-cat-girl.png';
+    this.x = x;
+    this.y = y;
 };
 
 
 //checks if player reaches water and calculates score
-Player.prototype.update = function(){
-  //player hits water, resets player position
-  if(this.y < 0.5){
-    new Player()
-    this.x = 200;
-    this.y = 410;
-    console.log("I hit the water!"); //lets me know when it hits
-    score += 5; //adds 5 points when the player hits the water
-//scoreboard scoring
-      ctx.clearRect(0, 0, 500, 500);
-//if the score reaches 50 the game alerts them then restarts
-    if(score == 50){
-      alert("You Win with " + score + " points!");
-      document.location.reload();
+Player.prototype.update = function() {
+    //player hits water, resets player position
+    if (this.y < 0.5) {
+        new Player()
+        this.x = 200;
+        this.y = 410;
+        console.log("I hit the water!"); //lets me know when it hits
+        score += 5; //adds 5 points when the player hits the water
+        //scoreboard scoring
+        ctx.clearRect(0, 0, 500, 500);
+        //if the score reaches 50 the game alerts them then restarts
+        if (score == 50) {
+            alert("You Win with " + score + " points!");
+            document.location.reload();
+        }
     }
-  }
 };
 
 //allows keyboard key movements
-Player.prototype.handleInput = function(key){
-  if(key === "left" && this.x > 0){
-    this.x -=100;
-  }
-  if(key === "right" && this.x < 400){
-    this.x += 100;
-  }
-  if(key === "up" && this.y > 0){
-    this.y -= 85;
-  }
-  if(key === "down" && this.y < 400){
-    this.y += 85;
-  }
+Player.prototype.handleInput = function(key) {
+    if (key === "left" && this.x > 0) {
+        this.x -= 100;
+    }
+    if (key === "right" && this.x < 400) {
+        this.x += 100;
+    }
+    if (key === "up" && this.y > 0) {
+        this.y -= 85;
+    }
+    if (key === "down" && this.y < 400) {
+        this.y += 85;
+    }
 };
 //renders player onto canvas
-Player.prototype.render = function(){
-  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-//renders the score onto canvas
-  ctx.font = "30px Arial Narrow";
-  ctx.fillStyle = "#000";
-  ctx.fillText("Score: " + score, 100, 25);
-//renders lives onto canvas
-  ctx.font = "30px Arial Narrow";
-  ctx.fillStyle = "#000";
-  ctx.fillText("Lives: " + lives, 310, 25);
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    //renders the score onto canvas
+    ctx.font = "30px Arial Narrow";
+    ctx.fillStyle = "#000";
+    ctx.fillText("Score: " + score, 100, 25);
+    //renders lives onto canvas
+    ctx.font = "30px Arial Narrow";
+    ctx.fillStyle = "#000";
+    ctx.fillText("Lives: " + lives, 310, 25);
 };
 
 
