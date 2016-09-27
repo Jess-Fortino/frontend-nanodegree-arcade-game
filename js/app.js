@@ -1,3 +1,8 @@
+//Declaring the extra variables needed
+var enemyWidth = 70;
+var enemyHeight = 30;
+
+
 // Enemies our player must avoid
 //Below-- uses an image
 var Enemy = function(x, y) {
@@ -5,6 +10,7 @@ var Enemy = function(x, y) {
     this.x = x;
     this.y =y;
     this.speed = 80 + Math.random() * 400;
+    console.log();
 };
 
 // Update the enemy's position, required method for game
@@ -23,19 +29,18 @@ Enemy.prototype.updatePosition = function(dt){
       this.x = -20;
     }
 }
+
 //checks if the player collides with a bug, if the player does collide with a bug, the game resets and the player loses their score.
 Enemy.prototype.checkCollisions = function(){
-  if(this.x < player.x + 50 &&
-     this.x + 70 > player.x &&
-     this.y < player.y + 30 &&
-     this.y + 30 > player.y){
+  if(this.x < player.x &&
+     this.x + enemyWidth > player.x &&
+     this.y < player.y &&
+     this.y + enemyHeight > player.y){
        new Player();
        player.x = 200;
        player.y = 410;
        lives--;
        ctx.clearRect(0, 0, 500, 500);
-       ctx.fillStyle = "#000";
-       ctx.fillText("Lives: " + lives, 310, 25);
 //if you run out of lives the game is reloaded
        if(lives === 0){
          alert("You lost! You had " + score + " points");
@@ -47,65 +52,6 @@ Enemy.prototype.checkCollisions = function(){
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-
-// var blueGem = function(x, y){ //gains 10 points
-//   this.sprite = "images/GemBlue.png";
-//   this.x = x;
-//   this.y = y;
-// }//need to use check collisions and render --  needs to be in engine.js
-//
-// blueGem.prototype.checkCollisions = function(){
-//   if(this.x < player.x + 50 &&
-//      this.x + 70 > player.x &&
-//      this.y < player.y + 30 &&
-//      this.y + 30 > player.y){
-//        score += 10;
-//        new blueGem();
-//      }
-// }
-// blueGem.prototype.render = function(){
-//   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-// };
-//
-// var heart = function(x, y){ //gives the player an extra life
-//   this.sprite = "images/Heart.png";
-//   this.x = x;
-//   this.y = y;
-// }// need to use checkCollisions and render -- needs to be in engine.js
-// heart.prototype.checkCollisions = function(){
-//   if(this.x < player.x + 50 &&
-//      this.x + 70 > player.x &&
-//      this.y < player.y + 30 &&
-//      this.y + 30 > player.y){
-//        lives++ //NEED TO ADD A LIFE THING!
-//        //You need to create a life counter, starting with 3 lives -- when the counter gets to 0 then the next collision results in the end of the game.
-//        new heart();
-//      }
-// }
-//
-// heart.prototype.render = function(){
-//   ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
-// };
-//
-// var Star = function(x, y){ //gains 20 points
-//   this.sprite = "images/Star.png";
-//   this.x = x;
-//   this.y = y;
-// }
-//
-// Star.prototype.checkCollisions = function(){
-//   if(this.x < player.x + 50 &&
-//      this.x + 70 > player.x &&
-//      this.y < player.y + 30 &&
-//      this.y + 30 > player.y){
-//        score += 20;
-//        //new Star;
-//      }
-// }
-//
-// Star.prototype.render = function(){
-//   ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
-// };
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -128,9 +74,7 @@ Player.prototype.update = function(){
     score += 5; //adds 5 points when the player hits the water
 //scoreboard scoring
       ctx.clearRect(0, 0, 500, 500);
-      ctx.fillStyle = "#000";
-      ctx.fillText("Score: " + score, 100, 25);
-    if(score === 100){
+    if(score == 50){
       alert("You Win with " + score + " points!");
       document.location.reload();
     }
@@ -182,11 +126,6 @@ allEnemies[2] = new Enemy(0, 230);
 
 var player = new Player(200, 410);
 
-// var bluegem = new blueGem(100, 140);
-//
-// var Heart = new heart(200, 230);
-//
-// var star = new Star(300, 140);
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
