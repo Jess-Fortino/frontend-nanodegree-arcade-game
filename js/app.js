@@ -1,7 +1,8 @@
 //Declaring the extra variables needed
 var enemyWidth = 70;
 var enemyHeight = 30;
-
+var score = 0;
+var lives = 3;
 
 // Enemies our player must avoid
 //Below-- uses an image
@@ -10,7 +11,6 @@ var Enemy = function(x, y) {
     this.x = x;
     this.y =y;
     this.speed = 80 + Math.random() * 400;
-    console.log();
 };
 
 // Update the enemy's position, required method for game
@@ -81,11 +81,6 @@ Player.prototype.update = function(){
     }
   }
 };
-//starting the score at 0
-var score = 0;
-
-//starting lives at 3
-var lives = 3;
 
 //allows keyboard key movements
 Player.prototype.handleInput = function(key){
