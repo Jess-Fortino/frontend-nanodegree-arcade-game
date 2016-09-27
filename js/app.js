@@ -74,6 +74,7 @@ Player.prototype.update = function(){
     score += 5; //adds 5 points when the player hits the water
 //scoreboard scoring
       ctx.clearRect(0, 0, 500, 500);
+//if the score reaches 50 the game alerts them then restarts
     if(score == 50){
       alert("You Win with " + score + " points!");
       document.location.reload();
